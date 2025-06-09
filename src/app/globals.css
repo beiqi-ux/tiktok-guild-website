@@ -1,0 +1,276 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TikTok Brand Colors and Custom Properties */
+:root {
+  /* TikTok Brand Colors */
+  --tiktok-black: #000000;
+  --tiktok-white: #ffffff;
+  --tiktok-red: #fe2c55;
+  --tiktok-blue: #25f4ee;
+  --tiktok-gray: #161823;
+  --tiktok-light-gray: #f1f1f2;
+  --tiktok-dark-gray: #121212;
+
+  /* Gradients */
+  --tiktok-gradient: linear-gradient(45deg, #fe2c55, #25f4ee);
+  --tiktok-gradient-dark: linear-gradient(135deg, #000000, #161823);
+  --tiktok-gradient-light: linear-gradient(135deg, #f1f1f2, #ffffff);
+
+  /* Shadows */
+  --tiktok-shadow: 0 4px 20px rgba(254, 44, 85, 0.15);
+  --tiktok-shadow-lg: 0 10px 40px rgba(254, 44, 85, 0.2);
+  --tiktok-glow: 0 0 20px rgba(37, 244, 238, 0.4);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--tiktok-black);
+  color: var(--tiktok-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--tiktok-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tiktok-gradient);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tiktok-red);
+}
+
+/* Typography */
+.text-gradient {
+  background: var(--tiktok-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heading-xl {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.heading-lg {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.heading-md {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: var(--tiktok-shadow); }
+  50% { box-shadow: var(--tiktok-glow); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Custom Components */
+.btn-primary {
+  background: var(--tiktok-gradient);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--tiktok-shadow-lg);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--tiktok-white);
+  border: 2px solid var(--tiktok-red);
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--tiktok-red);
+  transform: translateY(-2px);
+  box-shadow: var(--tiktok-shadow);
+}
+
+/* Card Styles */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--tiktok-blue);
+  box-shadow: var(--tiktok-glow);
+}
+
+/* Background Patterns */
+.bg-dots {
+  background-image: radial-gradient(circle, rgba(254, 44, 85, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(254, 44, 85, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(254, 44, 85, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Utility Classes */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background: linear-gradient(-45deg, #fe2c55, #25f4ee, #fe2c55, #25f4ee);
+  background-size: 400% 400%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out forwards;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heading-xl {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+
+  .heading-lg {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Loading States */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  100% {
+    left: 100%;
+  }
+}
